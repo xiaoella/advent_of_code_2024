@@ -24,4 +24,5 @@ def count_safe_reports(report):
                         safe_count += 1
     return safe_count
 
+
 print(f"Number of safe reports: {count_safe_reports(report)}")
