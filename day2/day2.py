@@ -1,3 +1,7 @@
+"""
+Day 2 Part 1
+"""
+
 # load input file
 with open("input.txt", "r") as file:
     report = file.read()
