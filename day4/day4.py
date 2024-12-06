@@ -2,7 +2,7 @@
 Day 4 Part 1
 """
 
-import pandas as pd
+
 # import input
 with open("day4/input.txt", "r") as file:
     data = file.read()
@@ -48,3 +48,29 @@ for x, row in enumerate(data):
                 counter += 1
 
 print(f"Number of 'XMAS' in data: {counter}")
+
+
+"""
+Part 2
+"""
+def scan_x(data, x, y) -> bool:
+    if x <= 0 or x >= len(data)-1 or y <= 0 or y >= len(data[0])-1:
+        return False
+    # first X \
+    top_left = data[x-1][y-1]
+    bot_right = data[x+1][y+1]
+    # second X /
+    bot_left = data[x-1][y+1]
+    top_right = data[x+1][y-1]
+    # checking if both \/ makes up MAS in any combination
+    if ((top_left, bot_right) in [("M", "S"), ("S", "M")]) and ((bot_left, top_right) in [("M", "S"), ("S", "M")]):
+        return True
+
+counter = 0
+for x, row in enumerate(data):
+    for y, char in enumerate(row):
+        if data[x][y] == "A":
+            if scan_x(data, x, y):
+                counter += 1
+
+print(f"Number of 'X-MAS' in data: {counter}")
